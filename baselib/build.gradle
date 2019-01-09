@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    dataBinding {
+        enabled = true
+    }
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.defaultVersion.minsdkversion
+        targetSdkVersion rootProject.ext.defaultVersion.targetsdkversion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compile('com.android.support:appcompat-v7:28.0.0') {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+    //阿里
+    api rootProject.ext.base["arouter"]
+    annotationProcessor rootProject.ext.base["arouterProcesser"]
+    //glide
+    api rootProject.ext.base["glideversion"]
+    annotationProcessor rootProject.ext.base["glideProcesser"]
+    //dagger2
+ //   api rootProject.ext.base["dagger2"]
+ //   api files('libs/dagger-2.20.jar')
+  //  api rootProject.ext.base["dagger2support"]
+  //  annotationProcessor ('libs/dagger-compiler-2.20.jar')
+    //retrofit
+    api rootProject.ext.base["retrofitversion"]
+    //recyclerview/adapter
+    api rootProject.ext.base["recyclver"]
+    // rxjava
+    api rootProject.ext.base["rxjava"]
+    api rootProject.ext.base["rxandroid"]
+
+    implementation rootProject.ext.base["logging-interceptor"]
+    implementation rootProject.ext.base["adapter-rxjava"]
+    implementation rootProject.ext.base["converter-gson"]
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation('com.android.support.test:runner:1.0.2') {
+        exclude group: 'com.android.support', module: 'support-media-compat'
+    }
+
+}

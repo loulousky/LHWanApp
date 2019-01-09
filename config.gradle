@@ -1,0 +1,40 @@
+ext{
+
+    defaultVersion =[
+        targetsdkversion : 28,
+        minsdkversion : 15
+    ]
+
+    base=[
+            //图片
+        "glideversion" : 'com.github.bumptech.glide:glide:4.8.0',
+        "glideProcesser" : 'com.github.bumptech.glide:compiler:4.8.0',
+            //网络
+        "retrofitversion" :  'com.squareup.retrofit2:retrofit:2.5.0',
+            //注入框架
+        "dagger2" :  'com.google.dagger:dagger-android:2.1.1',
+            "dagger2support":'com.google.dagger:dagger-android-support:2.1.1',
+        "dagger2Processer" :  'com.google.dagger:dagger-android-processor:2.1.1',
+            //路由
+        "arouter":'com.alibaba:arouter-api:1.4.1',
+        "arouterProcesser" : 'com.alibaba:arouter-compiler:1.2.2',
+            //最全的recyclerview
+        "recyclver":  'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22',
+            //rxjava
+        "rxandroid" : 'io.reactivex.rxjava2:rxandroid:2.1.0',
+// Because RxAndroid releases are few and far between, it is recommended you also
+// explicitly depend on RxJava's latest version for bug fixes and new features.
+// (see https://github.com/ReactiveX/RxJava/releases for latest 2.x.x version)
+         "rxjava" : 'io.reactivex.rxjava2:rxjava:2.2.5',
+
+          "converter-gson": 'com.squareup.retrofit2:converter-gson:2.5.0',
+          "adapter-rxjava": 'com.squareup.retrofit2:adapter-rxjava:2.5.0',
+          "logging-interceptor": 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
+
+    ]
+
+
+
+
+}
