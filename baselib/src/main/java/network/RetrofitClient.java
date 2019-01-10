@@ -7,6 +7,10 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -93,10 +97,28 @@ import static android.provider.Settings.System.DATE_FORMAT;
         return new Retrofit.Builder()
                 .baseUrl(BaseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.from(getSelfThreadPool())))
                 .client(okHttpClient)
                 .build();
     }
 
+
+    private static  ThreadPoolExecutor poolExecutor;
+
+    /**
+     * 综合cache和FIX的优缺点 防止RXJAVA线程池溢出OOM的错误
+     * @return
+     */
+   private ThreadPoolExecutor getSelfThreadPool(){
+       //自定义线程池，防止RXJAVA开启很多线程后出现OM的错误
+       if(poolExecutor==null) {
+           poolExecutor = new ThreadPoolExecutor(0, 64,
+                   0L, TimeUnit.MILLISECONDS,
+                   new LinkedBlockingQueue<Runnable>());
+       }
+
+
+    return   poolExecutor;
+    }
 
 }

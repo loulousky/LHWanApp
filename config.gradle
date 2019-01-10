@@ -29,7 +29,12 @@ ext{
 
           "converter-gson": 'com.squareup.retrofit2:converter-gson:2.5.0',
           "adapter-rxjava": 'com.squareup.retrofit2:adapter-rxjava:2.5.0',
-          "logging-interceptor": 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+          "logging-interceptor": 'com.squareup.okhttp3:logging-interceptor:3.4.1',
+            //适配
+          "autolayout":'me.jessyan:autosize:1.1.2',
+            //权限
+          "permission": 'com.yanzhenjie:permission:2.0.0-rc12',
+
 
 
     ]

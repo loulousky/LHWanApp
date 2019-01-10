@@ -34,9 +34,21 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compile('com.android.support:appcompat-v7:28.0.0') {
+    api('com.android.support:appcompat-v7:28.0.0') {
+
         exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-fragment'
+        exclude group: 'com.android.support', module: 'support-core-ui'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'android.arch.core', module: 'common'
+        exclude group: 'android.arch.core', module: 'runtime'
+        exclude group: 'android.arch.lifecycle', module: 'common'
+        exclude group: 'android.arch.lifecycle', module: 'runtime'
+        exclude group: 'android.arch.lifecycle', module: 'livedata-core'
+        exclude group: 'android.arch.lifecycle', module: 'viewmodel'
     }
+
     //阿里
     api rootProject.ext.base["arouter"]
     annotationProcessor rootProject.ext.base["arouterProcesser"]
@@ -44,10 +56,10 @@ dependencies {
     api rootProject.ext.base["glideversion"]
     annotationProcessor rootProject.ext.base["glideProcesser"]
     //dagger2
- //   api rootProject.ext.base["dagger2"]
- //   api files('libs/dagger-2.20.jar')
-  //  api rootProject.ext.base["dagger2support"]
-  //  annotationProcessor ('libs/dagger-compiler-2.20.jar')
+    //   api rootProject.ext.base["dagger2"]
+    //   api files('libs/dagger-2.20.jar')
+    //  api rootProject.ext.base["dagger2support"]
+    //  annotationProcessor ('libs/dagger-compiler-2.20.jar')
     //retrofit
     api rootProject.ext.base["retrofitversion"]
     //recyclerview/adapter
@@ -55,12 +67,12 @@ dependencies {
     // rxjava
     api rootProject.ext.base["rxjava"]
     api rootProject.ext.base["rxandroid"]
-
+    api rootProject.ext.base["autolayout"]
+    api project(':permission')
     implementation rootProject.ext.base["logging-interceptor"]
     implementation rootProject.ext.base["adapter-rxjava"]
     implementation rootProject.ext.base["converter-gson"]
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation('com.android.support.test:runner:1.0.2') {

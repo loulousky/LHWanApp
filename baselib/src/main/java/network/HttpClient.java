@@ -31,7 +31,10 @@ public class HttpClient {
      * @param <T>
      * @return
      */
-    public <T> T create(Class<T> t){
+    public <T> T create(Class<T> t) throws Exception {
+        if(!t.isInterface()){
+            throw new Exception("必须是接口"+HttpClient.class.getClass().getName());
+        }
         return  retrofitClient.getDefaultClient().create(t);
 
     }
@@ -43,7 +46,14 @@ public class HttpClient {
      * @param <T>
      * @return
      */
-  public <T> T create(Class<T> t,String host){
+  public <T> T create(Class<T> t,String host) throws Exception {
+
+      if(!t.isInterface()){
+          throw new Exception("必须是接口"+HttpClient.class.getClass().getName());
+      }
+
+
+
         return retrofitClient.getRetrofitWithDifferentHost(host).create(t);
 
   }
