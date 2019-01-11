@@ -3,6 +3,7 @@ package base;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,12 +14,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.liuhai.permission.BuildConfig;
 import com.liuhai.permission.PermissionUtils;
 
 import java.security.Permission;
 import java.util.Observable;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
@@ -61,8 +65,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else if (getIntent() != null && getIntent().getExtras() != null) {
             initParam(getIntent().getExtras());
         }
-
-
         setContentView(contentView);
 
 
@@ -117,6 +119,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
+        ButterKnife.bind(this);//Butternife统一入库
+        //路由注入框架
+        ARouter.getInstance().inject(this);
         init();
         setListener();
     }
@@ -124,7 +129,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 基本Toast
-     *
      * @param toast
      */
     public void quickToast(String toast) {
@@ -177,4 +181,44 @@ public abstract class BaseActivity extends AppCompatActivity {
         progressDialog = null;
         super.onDestroy();
     }
+
+    /**
+     * 阿里路由的跳转 直接跳转无参数携带
+     * @param Path 路径
+     */
+    public void startActivity(String  Path) {
+
+        ARouter.getInstance().build(Path).navigation();
+
+    }
+
+
+    /**
+     * 拿到具体的AROUTER做 特殊跳转例如传至等
+     * @param path
+     * @说明 with传参数，addflag添加FLAG  withTransition动画
+     * @return
+     */
+    public ARouter getAouter(String path){
+        return ARouter.getInstance();
+    }
+
+
+
+
+
+
+    /**
+     * 阿里路由的跳转 直接跳转无参数携带
+     * @param Path 路径
+     */
+    public void startActivityWithUri(Uri  Path) {
+        ARouter.getInstance().build(Path).navigation();
+
+    }
+
+
+
+
+
 }

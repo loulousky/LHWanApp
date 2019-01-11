@@ -28,7 +28,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
 
-    implementation('com.android.support:appcompat-v7:28.0.0') {
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    //权限
+    api (rootProject.ext.base["permission"]){
+        exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module:'support-fragment'
         exclude group: 'com.android.support', module:'support-core-ui'
@@ -42,10 +46,22 @@ dependencies {
         exclude group: 'android.arch.lifecycle', module :'viewmodel'
     }
 
-    //权限
-    api rootProject.ext.base["permission"]
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation ('com.android.support.test:runner:1.0.2'){
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module:'support-fragment'
+        exclude group: 'com.android.support', module:'support-core-ui'
+        exclude group: 'com.android.support', module:'support-core-utils'
+        exclude group: 'com.android.support', module:'support-annotations'
+        exclude group: 'android.arch.core',module:'common'
+        exclude group: 'android.arch.core',module:'runtime'
+        exclude group: 'android.arch.lifecycle', module :'common'
+        exclude group: 'android.arch.lifecycle', module :'runtime'
+        exclude group: 'android.arch.lifecycle', module :'livedata-core'
+        exclude group: 'android.arch.lifecycle', module :'viewmodel'
+    }
+
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

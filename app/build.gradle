@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+//引用黄油刀插件每个Moduel都要引用这个 注意主工程用R引用 library用R2 子MODULE和主的工程资源可能会有冲突
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 28
 
@@ -18,8 +19,15 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                includeCompileClasspath = true
             }
         }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
     }
 
 
@@ -36,6 +44,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
-    api project(':baselib')
+    api (project(':baselib')){
+        exclude group: 'android.arch.core',module:'common'
+        exclude group: 'android.arch.core',module:'runtime'
+        exclude group: 'android.arch.lifecycle', module :'common'
+        exclude group: 'android.arch.lifecycle', module :'runtime'
+        exclude group: 'android.arch.lifecycle', module :'livedata-core'
+        exclude group: 'android.arch.lifecycle', module :'viewmodel'
+    }
 
 }

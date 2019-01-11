@@ -36,6 +36,9 @@ ext{
           "permission": 'com.yanzhenjie:permission:2.0.0-rc12',
 
 
+            //黄油刀
+            "butternife":'com.jakewharton:butterknife:9.0.0',
+            "butternifeprocesser": 'com.jakewharton:butterknife-compiler:9.0.0'
 
     ]
 

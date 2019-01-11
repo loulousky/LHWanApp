@@ -1,6 +1,8 @@
 package base;
 
 
+import android.view.View;
+
 import error.AppException;
 
 /**
@@ -9,7 +11,7 @@ import error.AppException;
  * 邮箱：185587041@qq.com
  * 说明：常规集成的Activity
  */
-public class BaseFunActivity<T extends BasePresenter> extends BaseActivity implements ILoadingView {
+public abstract class BaseFunActivity<T extends BasePresenter> extends BaseActivity implements ILoadingView {
 
     //P层接口
     private T presenter;
@@ -17,13 +19,13 @@ public class BaseFunActivity<T extends BasePresenter> extends BaseActivity imple
 
     @Override
     public void showLoading() {
-        showLoading();
+        showLoadingDialog("加载中..");
     }
 
     @Override
     public void showError(AppException errorThrowable) {
         errorThrowable.printStackTrace();
-        showError(errorThrowable);
+        quickToast(errorThrowable.getMessage());
     }
 
     @Override
@@ -31,19 +33,22 @@ public class BaseFunActivity<T extends BasePresenter> extends BaseActivity imple
         closeLoadingDialog();
     }
 
+
     @Override
-    protected int getLayoutId() {
-        return 0;
+    public void setContentView(View view) {
+        super.setContentView(view);
+        if(presenter!=null) {
+            getLifecycle().addObserver(presenter);
+        }
     }
 
     @Override
-    protected void init() {
-
-    }
-
-    @Override
-    protected void setListener() {
-
+    protected void onDestroy() {
+        super.onDestroy();
+        //移除生命周期的监听
+        if(presenter!=null) {
+            getLifecycle().removeObserver(presenter);
+        }
     }
 
     /**

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 28
     dataBinding {
@@ -15,10 +15,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-
+//添加如下配置就OK了
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+
+                includeCompileClasspath = true
+
             }
         }
     }
@@ -34,21 +37,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api('com.android.support:appcompat-v7:28.0.0') {
 
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude group: 'com.android.support', module: 'support-fragment'
-        exclude group: 'com.android.support', module: 'support-core-ui'
-        exclude group: 'com.android.support', module: 'support-core-utils'
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'android.arch.core', module: 'common'
-        exclude group: 'android.arch.core', module: 'runtime'
-        exclude group: 'android.arch.lifecycle', module: 'common'
-        exclude group: 'android.arch.lifecycle', module: 'runtime'
-        exclude group: 'android.arch.lifecycle', module: 'livedata-core'
-        exclude group: 'android.arch.lifecycle', module: 'viewmodel'
-    }
 
+    api 'com.android.support:appcompat-v7:28.0.0'
     //阿里
     api rootProject.ext.base["arouter"]
     annotationProcessor rootProject.ext.base["arouterProcesser"]
@@ -67,7 +58,27 @@ dependencies {
     // rxjava
     api rootProject.ext.base["rxjava"]
     api rootProject.ext.base["rxandroid"]
-    api rootProject.ext.base["autolayout"]
+    api (rootProject.ext.base["autolayout"]){
+
+            exclude group: 'com.android.support', module: 'support-v4'
+            exclude group: 'com.android.support', module: 'appcompat-v7'
+            exclude group: 'com.android.support', module: 'support-fragment'
+            exclude group: 'com.android.support', module: 'support-core-ui'
+            exclude group: 'com.android.support', module: 'support-core-utils'
+            exclude group: 'com.android.support', module: 'support-annotations'
+            exclude group: 'android.arch.core', module: 'common'
+            exclude group: 'android.arch.core', module: 'runtime'
+            exclude group: 'android.arch.lifecycle', module: 'common'
+            exclude group: 'android.arch.lifecycle', module: 'runtime'
+            exclude group: 'android.arch.lifecycle', module: 'livedata-core'
+            exclude group: 'android.arch.lifecycle', module: 'viewmodel'
+
+    }
+    api rootProject.ext.base["butternife"]
+    api rootProject.ext.base["butternifeprocesser"]
+
+
+
     api project(':permission')
     implementation rootProject.ext.base["logging-interceptor"]
     implementation rootProject.ext.base["adapter-rxjava"]
