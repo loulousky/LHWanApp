@@ -18,7 +18,7 @@ android {
 //添加如下配置就OK了
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
 
                 includeCompileClasspath = true
 
@@ -58,25 +58,25 @@ dependencies {
     // rxjava
     api rootProject.ext.base["rxjava"]
     api rootProject.ext.base["rxandroid"]
-    api (rootProject.ext.base["autolayout"]){
+    api(rootProject.ext.base["autolayout"]) {
 
-            exclude group: 'com.android.support', module: 'support-v4'
-            exclude group: 'com.android.support', module: 'appcompat-v7'
-            exclude group: 'com.android.support', module: 'support-fragment'
-            exclude group: 'com.android.support', module: 'support-core-ui'
-            exclude group: 'com.android.support', module: 'support-core-utils'
-            exclude group: 'com.android.support', module: 'support-annotations'
-            exclude group: 'android.arch.core', module: 'common'
-            exclude group: 'android.arch.core', module: 'runtime'
-            exclude group: 'android.arch.lifecycle', module: 'common'
-            exclude group: 'android.arch.lifecycle', module: 'runtime'
-            exclude group: 'android.arch.lifecycle', module: 'livedata-core'
-            exclude group: 'android.arch.lifecycle', module: 'viewmodel'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-fragment'
+        exclude group: 'com.android.support', module: 'support-core-ui'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'android.arch.core', module: 'common'
+        exclude group: 'android.arch.core', module: 'runtime'
+        exclude group: 'android.arch.lifecycle', module: 'common'
+        exclude group: 'android.arch.lifecycle', module: 'runtime'
+        exclude group: 'android.arch.lifecycle', module: 'livedata-core'
+        exclude group: 'android.arch.lifecycle', module: 'viewmodel'
 
     }
     api rootProject.ext.base["butternife"]
     api rootProject.ext.base["butternifeprocesser"]
-
+    api rootProject.ext.base["viewmodel"]
 
 
     api project(':permission')

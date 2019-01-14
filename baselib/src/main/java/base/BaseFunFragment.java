@@ -1,5 +1,6 @@
 package base;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,7 +19,7 @@ import error.AppException;
  * 邮箱：185587041@qq.com
  * 说明：继承此Fragment
  */
-public abstract  class BaseFunFragment<T extends BasePresent> extends BaseFragment implements ILoadingView{
+public abstract  class BaseFunFragment<T extends BasePresentImpl> extends BaseFragment implements ILoadingView{
 
     //present外部set进来 //本来想用dagger2的，奈何本地网络差集成不下来FUCK~
     public  T present;
@@ -52,11 +53,13 @@ public abstract  class BaseFunFragment<T extends BasePresent> extends BaseFragme
 
     @Override
     protected void init() {
+       present= (T) ViewModelProviders.of(this).get(present.getClass());
         if(present!=null) {
             getLifecycle().addObserver(present);
         }
         permissionUtils = activity.permissionUtils;
         sharedPreferences = activity.sharedPreferences;
+
 
 
     }

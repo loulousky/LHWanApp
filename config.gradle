@@ -38,7 +38,10 @@ ext{
 
             //黄油刀
             "butternife":'com.jakewharton:butterknife:9.0.0',
-            "butternifeprocesser": 'com.jakewharton:butterknife-compiler:9.0.0'
+            "butternifeprocesser": 'com.jakewharton:butterknife-compiler:9.0.0',
+
+            //viewmodel
+            "viewmodel": "android.arch.lifecycle:extensions:1.1.1"
 
     ]
 
