@@ -2,7 +2,9 @@ package base;
 
 import android.app.Activity;
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
+import android.arch.lifecycle.ViewModel;
 
 
 import error.AppException;
@@ -20,6 +22,7 @@ import rx.subscriptions.CompositeSubscription;
  * @author liuhai
  * @data: 2016/6/27 12:54
  * @version: V1.0
+ * 集成VIEWMODEL管理整个P层的生命周期
  */
 public abstract class BasePresenter<T extends BaseView> implements BasePresent {
     protected ILoadingView mView;
@@ -37,7 +40,6 @@ public abstract class BasePresenter<T extends BaseView> implements BasePresent {
         mActivity = (T) activity;
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     protected void unSubscribe() {
         if (mCompositeSubscription != null) {
             mCompositeSubscription.clear();
@@ -106,6 +108,8 @@ public abstract class BasePresenter<T extends BaseView> implements BasePresent {
 
     }
 
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void detachView() {
         this.mView = null;
         mActivity = null;

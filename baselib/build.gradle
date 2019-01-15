@@ -76,7 +76,7 @@ dependencies {
     }
     api rootProject.ext.base["butternife"]
     api rootProject.ext.base["butternifeprocesser"]
-    api rootProject.ext.base["viewmodel"]
+   // api rootProject.ext.base["viewmodel"]
 
 
     api project(':permission')

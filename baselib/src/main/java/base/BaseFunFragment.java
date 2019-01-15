@@ -1,6 +1,5 @@
 package base;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -53,7 +52,6 @@ public abstract  class BaseFunFragment<T extends BasePresentImpl> extends BaseFr
 
     @Override
     protected void init() {
-       present= (T) ViewModelProviders.of(this).get(present.getClass());
         if(present!=null) {
             getLifecycle().addObserver(present);
         }

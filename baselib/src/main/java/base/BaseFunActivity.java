@@ -14,7 +14,7 @@ import error.AppException;
 public abstract class BaseFunActivity<T extends BasePresenter> extends BaseActivity implements ILoadingView {
 
     //P层接口
-    private T presenter;
+    public T presenter;
 
 
     @Override

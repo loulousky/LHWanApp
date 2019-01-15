@@ -16,4 +16,10 @@ public class RouterPath {
     public static final String APP_MODULE_MAIN="com/example/liuhai/myapplication/MainActivity";
 
 
+    /**
+     * 引导页Activity
+     */
+    public static final String APP_MODULE_WECLOMECALL="com/example/liuhai/myapplication/weclome/view/WeclomeCallActivity";
+
+
 }
