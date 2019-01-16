@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':permission'
+include ':app', ':baselib', ':permission', ':homemodule'

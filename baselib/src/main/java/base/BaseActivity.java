@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.gyf.barlibrary.ImmersionBar;
 import com.liuhai.permission.BuildConfig;
 import com.liuhai.permission.PermissionUtils;
 
@@ -101,17 +102,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 默认设置
      */
     public void steepStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // 透明状态栏
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // 透明导航栏
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
+        ImmersionBar.with(this).init();
     }
-
-
 
     /**
      * 重写Contentview

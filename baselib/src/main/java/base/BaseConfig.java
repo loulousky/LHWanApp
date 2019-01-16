@@ -8,6 +8,6 @@ package base;
  * 通过反射来初始化通过统一的类来初始化全部的数据
  */
 public class BaseConfig {
-    public static String[] initClass={"base.BaseLibInitImpl"};
+    public static String[] initClass={"base.BaseLibInitImpl","com.example.liuhai.myapplication.AppInit"};
 
 }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import wiget.ProgressDialog;
 
 /**
@@ -24,6 +25,7 @@ public abstract class BaseFragment extends Fragment {
 
     private View rootView;
     public BaseActivity activity;
+    private Unbinder unbinder;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -35,7 +37,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = LayoutInflater.from(this.getActivity()).inflate(getLayoutId(), null);
-        ButterKnife.bind(this, rootView);//绑定butternife
+        //绑定butternife
+        unbinder = ButterKnife.bind(this, rootView);
         if (savedInstanceState != null) {
             initParam(savedInstanceState);
         } else if ( getArguments() != null) {
@@ -74,6 +77,12 @@ public abstract class BaseFragment extends Fragment {
         closeLoadingDialog();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
+
     /**
      * 做一些获取BUNDLE的数据
      * @param savedInstanceState
@@ -99,6 +108,5 @@ public abstract class BaseFragment extends Fragment {
      * 设置监听
      */
     protected abstract void setListener();
-
 
 }

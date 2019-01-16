@@ -24,6 +24,11 @@ public interface WeclomeCallContact {
         public void out();
 
 
+        //改背景
+        public void changeBackGround();
+
+
+
     }
 
     //暂时WeclomeCallActivity用不到
@@ -38,6 +43,9 @@ public interface WeclomeCallContact {
         public void in();
 
         public void out();
+
+        //改背景
+        public void changeBackGround();
 
     }
 

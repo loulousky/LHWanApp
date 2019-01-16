@@ -37,8 +37,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-
     api 'com.android.support:appcompat-v7:28.0.0'
     //阿里
     api rootProject.ext.base["arouter"]
@@ -76,9 +74,8 @@ dependencies {
     }
     api rootProject.ext.base["butternife"]
     api rootProject.ext.base["butternifeprocesser"]
-   // api rootProject.ext.base["viewmodel"]
-
-
+    // api rootProject.ext.base["viewmodel"]
+    api rootProject.ext.base["blur"]
     api project(':permission')
     implementation rootProject.ext.base["logging-interceptor"]
     implementation rootProject.ext.base["adapter-rxjava"]
@@ -89,5 +86,6 @@ dependencies {
     androidTestImplementation('com.android.support.test:runner:1.0.2') {
         exclude group: 'com.android.support', module: 'support-media-compat'
     }
-
+    api 'com.android.support:design:28.0.0'
+    api 'com.gyf.immersionbar:immersionbar:2.3.3-beta15'
 }

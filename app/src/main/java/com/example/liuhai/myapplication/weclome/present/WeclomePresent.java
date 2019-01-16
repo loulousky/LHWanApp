@@ -35,4 +35,9 @@ public class WeclomePresent  extends BasePresenter implements WeclomeCallContact
     public void out() {
 
     }
+
+    @Override
+    public void changeBackGround() {
+
+    }
 }

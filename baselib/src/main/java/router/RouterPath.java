@@ -13,13 +13,19 @@ public class RouterPath {
     /**
      * 首页Activity
      */
-    public static final String APP_MODULE_MAIN="com/example/liuhai/myapplication/MainActivity";
+    public static final String APP_MODULE_MAIN="/com/example/liuhai/myapplication/MainActivity";
 
 
     /**
      * 引导页Activity
      */
-    public static final String APP_MODULE_WECLOMECALL="com/example/liuhai/myapplication/weclome/view/WeclomeCallActivity";
+    public static final String APP_MODULE_WECLOMECALL="/com/example/liuhai/myapplication/weclome/view/WeclomeCallActivity";
+
+
+    /**
+     * 主页面
+     */
+    public static final String APP_MODULE_MAINPAGE="/com/example/liuhai/myapplication/main/view/MainPage";
 
 
 }

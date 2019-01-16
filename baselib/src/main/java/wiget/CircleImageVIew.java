@@ -37,7 +37,6 @@ public class CircleImageVIew  extends android.support.v7.widget.AppCompatImageVi
 
     public void setTranslateY(float translateY) {
         this.translateY = translateY;
-        Log.d("是否移动",translateY+"");
         invalidate();
     }
 

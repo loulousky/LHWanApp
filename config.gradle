@@ -41,7 +41,13 @@ ext{
             "butternifeprocesser": 'com.jakewharton:butterknife-compiler:9.0.0',
 
             //viewmodel
-            "viewmodel": "android.arch.lifecycle:extensions:1.1.1"
+            "viewmodel": "android.arch.lifecycle:extensions:1.1.1",
+
+
+            //高斯模糊
+            "blur": 'jp.wasabeef:blurry:3.0.0'
+
+
 
     ]
 

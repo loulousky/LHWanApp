@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string name="guide_text">确认过眼神 跟你最来电</string>
 </resources>
