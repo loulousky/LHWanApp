@@ -7,9 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.liuhai.homemodule.R;
 import com.example.liuhai.homemodule.R2;
 import com.example.liuhai.homemodule.main.adapter.HomeViewPagerAdapter;
@@ -18,10 +18,12 @@ import com.gyf.barlibrary.ImmersionBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import base.BaseFragment;
+import base.BaseFunFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.subjects.PublishSubject;
+import router.RouterPath;
 
 /**
  * 作者：liuhai
@@ -29,13 +31,17 @@ import butterknife.Unbinder;
  * 邮箱：185587041@qq.com
  * 说明：主页面的Fragment
  */
-public class HomeMainFragment extends BaseFragment {
-
-
+@Route(path = RouterPath.HOME_MOUDLE_MAIN)
+public class HomeMainFragment extends BaseFunFragment {
     @BindView(R2.id.home_tablayout)
     TabLayout homeTablayout;
     @BindView(R2.id.home_viewpager)
     ViewPager homeViewpager;
+    PublishSubject publishSubject;
+
+    public void setPublishSubject(PublishSubject publishSubject) {
+        this.publishSubject = publishSubject;
+    }
 
     @Override
     public void initParam(Bundle savedInstanceState) {
@@ -49,11 +55,8 @@ public class HomeMainFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        //全局的状态栏初始化
-        ImmersionBar.with(this).barColor(R.color.main_color).init();
-
-
     }
+
     @Override
     protected void setListener() {
         for (int i = 0; i < 3; i++) {
@@ -80,14 +83,21 @@ public class HomeMainFragment extends BaseFragment {
             list.add(new Fragment());
             list.add(new Fragment());
             list.add(new Fragment());
-            HomeViewPagerAdapter adapter = new HomeViewPagerAdapter(getChildFragmentManager(), list);
+            List<String> title = new ArrayList<>();
+            title.add("探索");
+            title.add("热门");
+            title.add("最新");
+            title.add("分类");
+            HomeViewPagerAdapter adapter = new HomeViewPagerAdapter(getChildFragmentManager(), list, title);
             homeViewpager.setAdapter(adapter);
             homeViewpager.setCurrentItem(1);
             homeViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int i, float v, int i1) {
-
                     //要在这里做动画处理去掉底部和上面部分的颜色 需要通知Activity
+                    if(i==0) {
+                        publishSubject.onNext(v);
+                    }
                 }
 
                 @Override
@@ -105,10 +115,10 @@ public class HomeMainFragment extends BaseFragment {
         }
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
     }
+
 
 }

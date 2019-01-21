@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.liuhai.baselib.R;
 import com.gyf.barlibrary.ImmersionBar;
 import com.liuhai.permission.BuildConfig;
 import com.liuhai.permission.PermissionUtils;
@@ -102,7 +103,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 默认设置
      */
     public void steepStatusBar() {
-        ImmersionBar.with(this).init();
+        ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).init();
     }
 
     /**

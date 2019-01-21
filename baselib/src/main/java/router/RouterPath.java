@@ -28,4 +28,9 @@ public class RouterPath {
     public static final String APP_MODULE_MAINPAGE="/com/example/liuhai/myapplication/main/view/MainPage";
 
 
+    /**
+     * 主页面首页FRAGMENT
+     */
+    public static final String HOME_MOUDLE_MAIN="/homemodule/main/view/HomeMainFragment";
+
 }

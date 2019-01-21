@@ -2,4 +2,7 @@
     <string name="app_name">My Application</string>
 
     <string name="guide_text">确认过眼神 跟你最来电</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

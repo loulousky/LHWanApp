@@ -83,6 +83,8 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
+
+
     /**
      * 做一些获取BUNDLE的数据
      * @param savedInstanceState

@@ -24,6 +24,8 @@ public class MainPagePresent extends BasePresenter implements MainContact.presen
     @Override
     public void onAttachView() {
 
+
+
     }
 
     @Override

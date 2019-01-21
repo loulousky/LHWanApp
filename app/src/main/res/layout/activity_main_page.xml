@@ -1,44 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".main.view.MainPage">
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/barview"/>
     <FrameLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"></FrameLayout>
+        android:layout_weight="1"></FrameLayout>
 
 
-    <FrameLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/mainpage_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="0"
+        android:background="#6495ED"
+        app:tabIndicatorHeight="0dp">
+        <!--<android.support.design.widget.TabItem android:layout="@layout/tab_item"-->
+        <!--app:tabIndicatorColor="@android:color/transparent"/>-->
 
-        app:layout_constraintBottom_toBottomOf="parent">
+        <!--<android.support.design.widget.TabItem android:layout="@layout/tab_item"-->
+        <!--app:tabIndicatorColor="@android:color/transparent"/>-->
 
-        <ImageView
-            android:id="@+id/blurview"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
+        <!--<android.support.design.widget.TabItem android:layout="@layout/tab_item"-->
+        <!--app:tabIndicatorColor="@android:color/transparent"/>-->
+    </android.support.design.widget.TabLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/mainpage_tablayout"
-            android:layout_width="match_parent"
-            android:background="#00000000"
-            app:tabIndicatorHeight="0dp"
-            android:layout_height="50dp">
-            <!--<android.support.design.widget.TabItem android:layout="@layout/tab_item"-->
-            <!--app:tabIndicatorColor="@android:color/transparent"/>-->
-
-            <!--<android.support.design.widget.TabItem android:layout="@layout/tab_item"-->
-            <!--app:tabIndicatorColor="@android:color/transparent"/>-->
-
-            <!--<android.support.design.widget.TabItem android:layout="@layout/tab_item"-->
-            <!--app:tabIndicatorColor="@android:color/transparent"/>-->
-        </android.support.design.widget.TabLayout>
-    </FrameLayout>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -44,8 +44,6 @@ public class ColdLauncherActivity extends AppCompatActivity {
                     public void onArrival(Postcard postcard) {
                         finish();
                     }
-
-
                 });
             }
         });

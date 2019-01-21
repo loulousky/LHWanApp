@@ -15,10 +15,12 @@ import java.util.List;
 public class HomeViewPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> list;
+    private List<String> list_Title;
 
-    public HomeViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public HomeViewPagerAdapter(FragmentManager fm, List<Fragment> fragments,List<String> list_Title) {
         super(fm);
         list = fragments;
+        this.list_Title=list_Title;
     }
 
     @Override
@@ -32,6 +34,11 @@ public class HomeViewPagerAdapter extends FragmentPagerAdapter {
 
         }
         return fragment;
+    }
+    //此方法用来显示tab上的名字
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return list_Title.get(position );
     }
 
     @Override
