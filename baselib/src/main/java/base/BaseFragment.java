@@ -28,10 +28,12 @@ public abstract class BaseFragment extends Fragment {
     private Unbinder unbinder;
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         activity = (BaseActivity) getActivity();
     }
+
+
 
     @Nullable
     @Override

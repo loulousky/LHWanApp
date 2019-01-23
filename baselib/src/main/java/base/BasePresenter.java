@@ -97,7 +97,7 @@ public abstract class BasePresenter<T extends BaseView> implements BasePresent {
 
             @Override
             public void onError(AppException throwable) {
-                mView.showError(new AppException(throwable));
+               onSubscribeSuccess.onError(throwable);
             }
 
             @Override

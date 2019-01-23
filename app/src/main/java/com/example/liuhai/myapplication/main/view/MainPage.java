@@ -134,9 +134,9 @@ public class MainPage extends BaseFunActivity<MainPagePresent> implements MainCo
             }
             mainpageTablayout.addTab(mainpageTablayout.newTab().setCustomView(itemView).setText(i + ""));
         }
-        fragment1 = new BlankFragment();
-        fragment2 = (HomeMainFragment) ARouter.getInstance().build(RouterPath.HOME_MOUDLE_MAIN).navigation();
-        ((HomeMainFragment) fragment2).setPublishSubject(subject);
+        fragment2 = new BlankFragment();
+        fragment1 = (HomeMainFragment) ARouter.getInstance().build(RouterPath.HOME_MOUDLE_MAIN).navigation();
+        ((HomeMainFragment) fragment1).setPublishSubject(subject);
         addFragment(R.id.fragment_content, fragment1, "tab1", false);
         addFragment(R.id.fragment_content, fragment2, "tab2", false);
         ShowFragment(fragment1);

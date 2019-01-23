@@ -1,9 +1,13 @@
 package network;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -79,21 +83,21 @@ import static android.provider.Settings.System.DATE_FORMAT;
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
-                .cookieJar(new CookieJar() {
-                    @Override
-                    public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
-
-                    }
-
-                    @Override
-                    public List<Cookie> loadForRequest(HttpUrl url) {
-                        return null;
-                    }
-                })
                 //  .addInterceptor(new HttpInterceptor(new HashMap<String, String>()))
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                    @Override
+                    public void log(String message) {
+                        try {
+                            String text = URLDecoder.decode(message, "utf-8");
+                            Log.e("OKHttp-----", text);
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                            Log.e("OKHttp-----", message);
+                        }
+                    }
+                }).setLevel(HttpLoggingInterceptor.Level.BASIC))
                 .build();
-        Gson gson = new GsonBuilder().setDateFormat(DATE_FORMAT).create();
+        Gson gson = new Gson();
         return new Retrofit.Builder()
                 .baseUrl(BaseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))

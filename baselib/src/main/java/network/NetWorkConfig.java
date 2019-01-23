@@ -7,8 +7,8 @@ package network;
  * 说明：
  */
 public class NetWorkConfig {
-
-    public static final String BASEURL="";
+  //  http://hd215.api.okayapi.com/
+    public static final String BASEURL="https://gank.io/api/";
 
 
 

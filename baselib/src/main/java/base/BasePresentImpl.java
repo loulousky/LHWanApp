@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
  * 邮箱：185587041@qq.com
  * 说明：VIEWMODE activity/fragment的数据管理存储类，内存存储 需要配合LIVEDATA来使用
  */
-public class BasePresentImpl extends ViewModel implements BasePresent {
+public class BasePresentImpl  implements BasePresent {
 
 
 
@@ -26,9 +26,5 @@ public class BasePresentImpl extends ViewModel implements BasePresent {
 
     }
 
-    //做数据清除处理
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
+
 }

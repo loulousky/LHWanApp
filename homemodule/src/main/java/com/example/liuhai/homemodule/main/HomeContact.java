@@ -1,8 +1,16 @@
 package com.example.liuhai.homemodule.main;
 
 
+import android.provider.MediaStore;
+
+import com.example.liuhai.homemodule.bean.VidaoData;
+
+import java.util.List;
+
 import base.BaseModuel;
 import base.BaseView;
+import base.OnSubscribeSuccess;
+import error.AppException;
 import io.reactivex.Observable;
 
 /**
@@ -15,20 +23,26 @@ public interface HomeContact {
 
     public interface model extends BaseModuel {
 
-        public <T> Observable<T> loadDisCover(int pageNo);
+        public <T> Observable<T> loadDisCover(int pageNo) throws Exception;
 
-        public <T> Observable<T> loadHot(int pageNo);
+        public <T> Observable<T> loadHot(int pageNo) throws Exception;
 
-        public <T> Observable<T> loadNew(int pageNo);
+        public <T> Observable<T> loadNew(int pageNo) throws Exception;
 
-        public <T> Observable<T> loadClassify();
+        public <T> Observable<T> loadClassify() throws Exception;
 
 
     }
 
 
     public interface view extends BaseView {
-        public void loadData();
+
+        /**
+         * flag 判断请求哪个接口 一个fragment写全部
+         *
+         * @param refush 是刷新还是下载加载
+         */
+        public void loadData(boolean refush);
 
         public void setEmptyView();
 
@@ -39,18 +53,18 @@ public interface HomeContact {
     }
 
 
-    public interface present{
+    public interface present {
 
-        public void loadData();
+        public void loadDisCover(int page, OnSubscribeSuccess<List<VidaoData>> subscribeSuccess);
 
-        public void loadmore();
+        public void loadHot(int page, OnSubscribeSuccess<List<VidaoData>> subscribeSuccess);
 
-        public void setEmptyView();
+        public void loadNew(int page, OnSubscribeSuccess<List<VidaoData>> subscribeSuccess);
 
-        public void refush();
+        public void loadClassify();
+
 
     }
-
 
 
 }

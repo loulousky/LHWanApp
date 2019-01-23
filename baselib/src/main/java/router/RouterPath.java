@@ -33,4 +33,12 @@ public class RouterPath {
      */
     public static final String HOME_MOUDLE_MAIN="/homemodule/main/view/HomeMainFragment";
 
+
+    /**
+     * 首页热门fragment
+     *
+     */
+    public static final String HOME_MOUDLE_HOT="/homemodule/main/view/HomeListFragment";
+
+
 }
